@@ -1,0 +1,22 @@
+mat-drawer-container, mat-drawer {
+    height: 100%;
+}
+mat-drawer  {
+    width: 250px;
+}
+mat-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+.links > * {
+    margin-left: 10px;
+}
+.links > *:hover {
+    background: rgba(0,0,0,.4);
+    color: #f48fb1;
+}
+.container {
+    height: 100%;
+}
