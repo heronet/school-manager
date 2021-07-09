@@ -1,0 +1,20 @@
+<div class="container" *ngIf="(products.length > 0) && !isLoading">
+    <mat-card *ngFor="let product of products">
+        <mat-card-title>
+            {{product.name}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{product.category}}
+        </mat-card-subtitle>
+        <mat-card-content>
+            <img [src]="product.thumbnailUrl" [alt]="product.thumbnailId">
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Order</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div *ngIf="products.length === 0 && isLoading">
+    <mat-spinner  style="margin: 5vw auto;" [diameter]=50></mat-spinner>
+</div>
+<p *ngIf="erroeMessage" class="error-message">{{erroeMessage}}</p>
