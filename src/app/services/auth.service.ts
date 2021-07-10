@@ -26,12 +26,33 @@ export class AuthService {
     }
     return this.http.post<AuthData>(`${this.baseUrl}/account/login`, data).pipe(
       map(authData => {
-        this.authenticateSubject.next(authData);
+        this.saveUserLocal(authData);
+        this.setUser(authData);
       })
     );
   }
   logout() {
+    localStorage.removeItem('authData');
     this.authenticateSubject.next(null);
-    this.isAuthenticated.next(null);
+    this.isAuthenticated.next(false);
+  }
+  setUser(authData: AuthData) {
+    this.authenticateSubject.next(authData);
+    this.isAuthenticated.next(authData ? true : false);
+  }
+  saveUserLocal(authData: AuthData) { // Save minimal authData
+    let saveAuthData: AuthData = {
+      id: authData.id, 
+      token: authData.token, 
+      username: authData.username
+    };
+    localStorage.setItem('authData', JSON.stringify(saveAuthData)); 
+  }
+  
+  refrestToken(authData: AuthData) {
+    return this.http.post<AuthData>(`${this.baseUrl}/account/refresh`, authData);
+  }
+  emitOldAuthData(authData: AuthData) {
+    this.authenticateSubject.next(authData);
   }
 }

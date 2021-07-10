@@ -1,4 +1,4 @@
 <header>
-    <button mat-icon-button (click)="onSidenavToggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="onSidenavToggle()" *ngIf="isAuthenticated"><mat-icon>menu</mat-icon></button>
     <h1>{{pageTitle}}</h1>
 </header>

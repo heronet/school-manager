@@ -17,4 +17,5 @@
 <div *ngIf="products.length === 0 && isLoading">
     <mat-spinner  style="margin: 5vw auto;" [diameter]=50></mat-spinner>
 </div>
-<p *ngIf="erroeMessage" class="error-message">{{erroeMessage}}</p>
+<p *ngIf="products.length === 0 && !isLoading && !errorMessage" class="error-message">No Products</p>
+<p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>

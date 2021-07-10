@@ -1,26 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavItem } from 'src/app/models/NavItem';
-import { UiService } from 'src/app/services/ui.service';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
-  navItems: NavItem[] = [
-    {header: 'Dashboard', url: '/dashboard'},
-    {header: 'Store', url: '/store'},
-  ]
-  constructor(private router: Router) { }
+export class SidenavComponent implements OnInit, OnDestroy {
+  navItems: string[] = [];
+
+  routeNames = {
+    "/dashboard": "Dashboard",
+    "/admin-dashboard": "Admin Dashboard",
+    "/store": "Store"
+  };
+  private authClaimsSub: Subscription;
+
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    
+    this.getRoutes();
   }
 
-  navigate(navItem: NavItem) {
-    this.router.navigateByUrl(`${navItem.url}`);
+  navigate(navItem: string) {
+    this.router.navigateByUrl(`${navItem}`);
+  }
+  getRoutes() {
+    this.authClaimsSub = this.authService.authData$.subscribe(data => {
+      this.navItems.push('/dashboard');
+      if(data?.roles?.includes('Admin')) {
+        this.navItems.push('/admin-dashboard');
+      }
+      if(data?.claims) {
+        let claims = data.claims;
+        for (let index = 0; index < claims.length; index++) {
+          const claim = claims[index];
+          // Check if navItems already has route.
+          if(this.navItems.indexOf('/store') === -1) { // If not, look for it. Don't otherwise
+            if(claim.includes('products')) {
+              this.navItems.push('/store');
+            }
+          }
+        }
+      } else {
+        this.navItems = [];
+      }
+    })
+  }
+  ngOnDestroy() {
+    this.authClaimsSub.unsubscribe();
   }
 
 }

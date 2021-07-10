@@ -11,7 +11,7 @@ import { UiService } from 'src/app/services/ui.service';
 export class StoreComponent implements OnInit {
   products: Product[] = [];
   isLoading = false;
-  erroeMessage = "";
+  errorMessage = "";
   constructor(private uiService: UiService, private storeService: StoreService) { }
 
   ngOnInit(): void {
@@ -23,11 +23,11 @@ export class StoreComponent implements OnInit {
     this.storeService.getProducts().subscribe(products => {
       this.products = products;
       this.isLoading = false;
-      this.erroeMessage = "";
+      this.errorMessage = "";
     }, err => {
       console.log(err);
       this.isLoading = false;
-      this.erroeMessage = "An Error Occured";
+      this.errorMessage = "An Error Occured";
     })
   }
 

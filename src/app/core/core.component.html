@@ -3,17 +3,18 @@
     <span style="padding-left: 10px;">School Manager</span>
     <span style="flex: 1 1 auto;"></span>
     <div class="links">
-      <a mat-button routerLink="/login" *ngIf="!authData">Login</a>
-      <a mat-button (click)="onLogout()" *ngIf="authData">Logout</a>
+      <a mat-button routerLink="/login" *ngIf="!isAuthenticated">Login</a>
+      <a mat-button (click)="onLogout()" *ngIf="isAuthenticated">Logout</a>
     </div>
   </mat-toolbar>
-  <app-page-header (sidenavClicked)="sidenav.toggle()"></app-page-header>
+  <app-page-header (sidenavClicked)="sidenav.toggle()" (sidenavClosed)="sidenav.close()"></app-page-header>
   <mat-drawer-container>
     <mat-drawer #sidenav mode="side">
       <app-sidenav></app-sidenav>
     </mat-drawer>
     <mat-drawer-content class="drawer-content">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="!isLoading"></router-outlet>
+      <mat-spinner *ngIf="isLoading" style="margin: 20px auto;" [diameter]="50"></mat-spinner>
     </mat-drawer-content>
   </mat-drawer-container>
 </div>
