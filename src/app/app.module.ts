@@ -16,6 +16,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './core/pages/dashboard/dashboard.component';
 import { TokenInterceptor } from './utils/token.interceptor';
 import { AdminDashboardComponent } from './admin/pages/admin-dashboard/admin-dashboard.component';
+import { AddProductComponent } from './core/pages/store/add-product/add-product.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AdminDashboardComponent } from './admin/pages/admin-dashboard/admin-das
     AppComponent,
     CoreComponent,
     StoreComponent,
+    AddProductComponent,
     PageHeaderComponent,
     SidenavComponent,
     LoginComponent,

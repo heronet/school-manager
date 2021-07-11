@@ -8,8 +8,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
 
 @NgModule({
   imports: [
@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatProgressSpinnerModule
   ],
   exports: [
@@ -33,6 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatListModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatProgressSpinnerModule
   ]

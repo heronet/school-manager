@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(products.length > 0) && !isLoading">
-    <mat-card *ngFor="let product of products">
+    <mat-card *ngFor="let product of products; let i = index;">
         <mat-card-title>
             {{product.name}}
         </mat-card-title>
@@ -10,7 +10,8 @@
             <img [src]="product.thumbnailUrl" [alt]="product.thumbnailId">
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary">Order</button>
+            <button mat-raised-button color="primary" *ngIf="!isStoreKeeper">Order</button>
+            <button mat-raised-button color="warn" *ngIf="canDelete" (click)="deleteProduct(product.id, i)">Delete</button>
         </mat-card-actions>
     </mat-card>
 </div>
@@ -19,3 +20,4 @@
 </div>
 <p *ngIf="products.length === 0 && !isLoading && !errorMessage" class="error-message">No Products</p>
 <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
+<button mat-fab class="fab" *ngIf="!errorMessage && canAdd" routerLink="/store/add-product"><mat-icon>add</mat-icon></button>

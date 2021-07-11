@@ -1,0 +1,38 @@
+<mat-card class="card" *ngIf="!isLoading && !errorMessage && categories.length > 0">
+  <form class="form" #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+    <mat-form-field>
+      <mat-label for="name">Name</mat-label>
+      <input type="text" name="name" id="name" ngModel matInput required placeholder="Name your product">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="price">Price</mat-label>
+      <input type="number" name="price" id="name" ngModel matInput required placeholder="Add the Price">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select ngModel name="category" required>
+        <mat-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button *ngIf="!isSubloading" mat-raised-button color="primary" [disabled]="productForm.invalid" type="submit">Create Product</button>
+    <button *ngIf="isSubloading" mat-raised-button color="primary" disabled>
+      <mat-spinner [diameter]="25" class="button-spinner"></mat-spinner>
+    </button>
+  </form>
+</mat-card>
+<mat-card class="card" *ngIf="!isLoading && !errorMessage">
+  <form class="form" #catForm="ngForm" (ngSubmit)="addCategory(catForm)">
+    <mat-form-field>
+      <mat-label>New Category</mat-label>
+      <input type="text" name="newcategory" id="newcategory" matInput ngModel required placeholder="Enter Category Name">
+    </mat-form-field>
+    <button *ngIf="!isSubloading" mat-raised-button color="primary" [disabled]="catForm.invalid" type="submit">Create New Category</button>
+    <button *ngIf="isSubloading" mat-raised-button color="primary" disabled>
+      <mat-spinner [diameter]="25" class="button-spinner"></mat-spinner>
+    </button>
+  </form>
+</mat-card>
+<div *ngIf="isLoading">
+    <mat-spinner style="margin: 5vw auto;" [diameter]=50></mat-spinner>
+</div>
+<p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>

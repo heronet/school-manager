@@ -39,7 +39,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
           const claim = claims[index];
           // Check if navItems already has route.
           if(this.navItems.indexOf('/store') === -1) { // If not, look for it. Don't otherwise
-            if(claim.includes('products')) {
+            if(claim === 'products.read') {
               this.navItems.push('/store');
             }
           }

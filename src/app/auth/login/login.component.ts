@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   onSubmit({ value }: NgForm) {
     this.authService.login(value.username.trim(), value.password.trim()).subscribe(() => {
       this.errorText = "";
-      this.router.navigateByUrl("/store");
+      this.router.navigateByUrl("/");
     }, err => {
       if(err.error) this.errorText = err.error;
     })
