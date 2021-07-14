@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Category } from '../models/Category';
+import { Order } from '../models/Order';
 import { Product } from '../models/Product';
 
 @Injectable({
@@ -26,6 +27,12 @@ export class StoreService {
   }
   deleteProduct(id: string) {
     return this.http.delete(`${this.baseUrl}/products/${id}`);
+  }
+  orderProduct(order: Partial<Order>) {
+    return this.http.post(`${this.baseUrl}/products/order`, order);
+  }
+  getOrders() {
+    return this.http.get<Order[]>(`${this.baseUrl}/products/orders`);
   }
 
 }

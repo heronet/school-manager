@@ -15,8 +15,19 @@ import { StoreComponent } from './core/pages/store/store.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './core/pages/dashboard/dashboard.component';
 import { TokenInterceptor } from './utils/token.interceptor';
-import { AdminDashboardComponent } from './admin/pages/admin-dashboard/admin-dashboard.component';
 import { AddProductComponent } from './core/pages/store/add-product/add-product.component';
+import { OrdersComponent } from './core/pages/store/orders/orders.component';
+import { OrderDialogComponent } from './core/pages/store/dialogs/order-dialog/order-dialog.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+import { AdminDashboardComponent } from './admin/pages/admin-dashboard/admin-dashboard.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -29,7 +40,9 @@ import { AddProductComponent } from './core/pages/store/add-product/add-product.
     SidenavComponent,
     LoginComponent,
     DashboardComponent,
-    AdminDashboardComponent
+    OrdersComponent,
+    OrderDialogComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +50,16 @@ import { AddProductComponent } from './core/pages/store/add-product/add-product.
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]

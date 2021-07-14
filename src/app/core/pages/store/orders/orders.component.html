@@ -1,0 +1,49 @@
+<div class="container" *ngIf="orders.length > 0 && !isLoading && !errorMessage">
+    <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+        <!-- Product Column -->
+        <ng-container matColumnDef="product">
+            <th mat-header-cell *matHeaderCellDef> Product </th>
+            <td mat-cell *matCellDef="let order"> {{order.productName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef> Wanted by </th>
+            <td mat-cell *matCellDef="let order"> {{order.username}} </td>
+        </ng-container>
+
+        <!-- Order Quantity Column -->
+        <ng-container matColumnDef="orderQuantity">
+            <th mat-header-cell *matHeaderCellDef> Order Quantity </th>
+            <td mat-cell *matCellDef="let order"> {{order.orderedItemsCount}} </td>
+        </ng-container>
+
+        <!-- Available Quantity Column -->
+        <ng-container matColumnDef="availableQuantity">
+            <th mat-header-cell *matHeaderCellDef> Available Quantity </th>
+            <td mat-cell *matCellDef="let order"> {{order.availableItemsCount}} </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Order Time </th>
+            <td mat-cell *matCellDef="let order"> {{order.createdAt | date: 'medium'}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let order">
+                <button mat-raised-button color="primary">Check</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<p class="error-message" *ngIf="errorMessage && !isLoading">{{errorMessage}}</p>
+<div *ngIf="orders.length === 0 && isLoading">
+    <mat-spinner  style="margin: 5vw auto;" [diameter]=50></mat-spinner>
+</div>
+<p *ngIf="orders.length === 0 && !isLoading && !errorMessage" class="error-message">No Orders</p>

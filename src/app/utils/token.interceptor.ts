@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    this.authService.authData$.pipe(take(1)).subscribe(authData => {
+    this.authService.authData$.subscribe(authData => {
       if(authData) {
         request = request.clone({
           setHeaders: {

@@ -10,7 +10,7 @@
             <img [src]="product.thumbnailUrl" [alt]="product.thumbnailId">
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary" *ngIf="!isStoreKeeper">Order</button>
+            <button mat-raised-button color="primary" *ngIf="!isStoreKeeper" (click)="openOrderDialog(product)">Order</button>
             <button mat-raised-button color="warn" *ngIf="canDelete" (click)="deleteProduct(product.id, i)">Delete</button>
         </mat-card-actions>
     </mat-card>
@@ -20,4 +20,16 @@
 </div>
 <p *ngIf="products.length === 0 && !isLoading && !errorMessage" class="error-message">No Products</p>
 <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
-<button mat-fab class="fab" *ngIf="!errorMessage && canAdd" routerLink="/store/add-product"><mat-icon>add</mat-icon></button>
+
+<div class="btn-group">
+    <button 
+        mat-fab 
+        *ngIf="!errorMessage && canAdd" 
+        [matMenuTriggerFor]="menu"
+    ><mat-icon>more_vert</mat-icon></button>
+    
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/store/add-product">Add Product</button>
+        <button mat-menu-item routerLink="/store/orders">Orders</button>
+    </mat-menu>
+</div>

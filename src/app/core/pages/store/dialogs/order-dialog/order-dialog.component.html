@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content *ngIf="!isLoading && !orderSuccessful">
+  <p>How many do you want?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Quantity</mat-label>
+    <input matInput [(ngModel)]="quantity" type="number">
+  </mat-form-field>
+</div>
+<div mat-dialog-content *ngIf="isLoading">
+  <mat-spinner style="margin: 0 auto;" [diameter]="40"></mat-spinner>
+  <p style="margin: 10px auto; text-align: center;">Ordering...</p>
+</div>
+<div mat-dialog-content *ngIf="!isLoading && orderSuccessful">
+  <p style="margin: 10px auto;  color: gray; font-size: 20px;" >Order Succesful!</p>
+</div>
+<div mat-dialog-actions *ngIf="!orderSuccessful">
+  <button mat-stroked-button color="warn" (click)="onNoClick()" [disabled]="isLoading">Cancel</button>
+  <button mat-stroked-button color="primary" (click)="onOrderClick()" cdkFocusInitial [disabled]="isLoading">Order</button>
+</div>
+<div mat-dialog-actions *ngIf="orderSuccessful">
+  <button mat-stroked-button color="primary" (click)="onNoClick()">Ok</button>
+</div>
