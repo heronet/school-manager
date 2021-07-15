@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Delete {{data.name}}?</h1>
+<div mat-dialog-content *ngIf="!isLoading && !deleteSuccessful">
+  <p>Do you really want to delete it?</p>
+</div>
+<div mat-dialog-content *ngIf="isLoading">
+  <mat-spinner style="margin: 0 auto;" [diameter]="40"></mat-spinner>
+  <p style="margin: 10px auto; text-align: center;">Deleting...</p>
+</div>
+<div mat-dialog-content *ngIf="!isLoading && deleteSuccessful">
+  <p style="margin: 10px auto;  color: gray; font-size: 20px;" >Succesfully Deleted!</p>
+</div>
+<div mat-dialog-actions *ngIf="!deleteSuccessful">
+  <button mat-stroked-button color="warn" (click)="onDeleteClick()" [disabled]="isLoading">Delete</button>
+  <button mat-stroked-button color="primary" (click)="onNoClick()" cdkFocusInitial [disabled]="isLoading">Cancel</button>
+</div>
+<div mat-dialog-actions *ngIf="deleteSuccessful">
+  <button mat-stroked-button color="primary" (click)="onNoClick()">Ok</button>
+</div>

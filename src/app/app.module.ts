@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DeliverDialogComponent } from './core/pages/store/dialogs/deliver-dialog/deliver-dialog.component';
+import { DeleteDialogComponent } from './core/pages/store/dialogs/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { DeliverDialogComponent } from './core/pages/store/dialogs/deliver-dialo
     OrderDialogComponent,
     AdminDashboardComponent,
     DeliverDialogComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,

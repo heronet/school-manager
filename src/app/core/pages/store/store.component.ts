@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { OrderDialogComponent } from './dialogs/order-dialog/order-dialog.component';
 import { Order } from 'src/app/models/Order';
 import { NgForm } from '@angular/forms';
+import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-store',
@@ -78,26 +79,30 @@ export class StoreComponent implements OnInit, OnDestroy {
       }
     })
   }
-  deleteProduct(id: string, index: number) {
-    this.isLoading = true;
-    this.storeService.deleteProduct(id).subscribe(() => {
-       this.products.splice(index, 1);
-       this.isLoading = false;
-    }, err => {
-      console.log(err);
-      this.isLoading = false;
-    })
-  }
+
 
   // UI 
   openOrderDialog(product: Product) {
     const dialogRef = this.dialog.open(OrderDialogComponent, {
+      disableClose: true,
       width: '250px',
       data: { name: product.name, productId: product.id }
     });
 
     dialogRef.afterClosed().subscribe(quantity => {
       
+    });
+  }
+  openDeleteDialog(product: Product) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      disableClose: true,
+      width: '250px',
+      data: { name: product.name, productId: product.id }
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if(res)
+        this.getProducts();
     });
   }
   onPageChange(e: any) {

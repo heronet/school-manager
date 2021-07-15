@@ -55,6 +55,7 @@ export class OrdersComponent implements OnInit {
   }
   openDeliveryDialog(order: Order) {
     const dialogRef = this.dialog.open(DeliverDialogComponent, {
+      disableClose: true,
       width: '250px',
       data: { productName: order.productName, productId: order.productId, orderId: order.id, stock: order.availableItemsCount }
     });

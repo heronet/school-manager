@@ -21,7 +21,7 @@
             </mat-card-content>
             <mat-card-actions>
                 <button mat-raised-button color="primary" *ngIf="!isStoreKeeper" (click)="openOrderDialog(product)">Order</button>
-                <button mat-raised-button color="warn" *ngIf="canDelete" (click)="deleteProduct(product.id, i)">Delete</button>
+                <button mat-raised-button color="warn" *ngIf="canDelete" (click)="openDeleteDialog(product)">Delete</button>
             </mat-card-actions>
         </mat-card>
     </div>
