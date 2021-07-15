@@ -14,8 +14,8 @@ export class StoreService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts() {
-    return this.http.get<Product[]>(`${this.baseUrl}/products`);
+  getProducts(name: string, pageNumber: number, pageSize: number) {
+    return this.http.get<PaginatedResult<Product>>(`${this.baseUrl}/products?pageNumber=${pageNumber}&pageSize=${pageSize}&name=${name}`);
   }
   getCategories() {
     return this.http.get<Category[]>(`${this.baseUrl}/products/categories`);

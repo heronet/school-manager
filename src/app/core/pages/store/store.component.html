@@ -1,19 +1,38 @@
-<div class="container" *ngIf="(products.length > 0) && !isLoading">
-    <mat-card *ngFor="let product of products; let i = index;">
-        <mat-card-title>
-            {{product.name}}
-        </mat-card-title>
-        <mat-card-subtitle>
-            {{product.category}}
-        </mat-card-subtitle>
-        <mat-card-content>
-            <img [src]="product.thumbnailUrl" [alt]="product.thumbnailId">
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button color="primary" *ngIf="!isStoreKeeper" (click)="openOrderDialog(product)">Order</button>
-            <button mat-raised-button color="warn" *ngIf="canDelete" (click)="deleteProduct(product.id, i)">Delete</button>
-        </mat-card-actions>
-    </mat-card>
+<div class="container">
+    <form #f="ngForm" class="search" (ngSubmit)="searchProduct(f)">
+        <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input type="search" matInput ngModel placeholder="Search By Name" name="search">
+            <button mat-icon-button matSuffix  [attr.aria-label]="'Search'" type="submit">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+    <div class="products-container" *ngIf="(products.length > 0) && !isLoading">
+        <mat-card *ngFor="let product of products; let i = index;">
+            <mat-card-title>
+                {{product.name}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{product.category}}
+            </mat-card-subtitle>
+            <mat-card-content>
+                <img [src]="product.thumbnailUrl" [alt]="product.thumbnailId">
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" *ngIf="!isStoreKeeper" (click)="openOrderDialog(product)">Order</button>
+                <button mat-raised-button color="warn" *ngIf="canDelete" (click)="deleteProduct(product.id, i)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <mat-paginator
+            *ngIf="(products.length > 0) && !isLoading"
+            [pageSizeOptions]="[10, 15, 20]" 
+            (page)="onPageChange($event)"
+            [pageSize]="pageSize"
+            [pageIndex]="pageNumber - 1"
+            [length]="totalProducts"
+    ></mat-paginator>
 </div>
 <div *ngIf="products.length === 0 && isLoading">
     <mat-spinner  style="margin: 5vw auto;" [diameter]=50></mat-spinner>
