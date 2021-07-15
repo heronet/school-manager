@@ -16,10 +16,12 @@ export class OrderDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<OrderDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { name: string, productId: string },
-    private storeService: StoreService) {}
+    private storeService: StoreService
+  ) {}
   onNoClick(): void {
     this.isLoading = false;
     this.orderSuccessful = false;
+    this.quantity = 1;
     this.dialogRef.close();
   }
   onOrderClick() {
@@ -31,7 +33,6 @@ export class OrderDialogComponent {
     this.storeService.orderProduct(order).subscribe(() => {
       this.isLoading = false;
       this.orderSuccessful = true;
-      // this.dialogRef.close(this.quantity);
     }, err => {
       console.log(err);
       this.isLoading = false;

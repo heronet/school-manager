@@ -8,9 +8,7 @@
 }
 .container {
   display: flex;
-}
-
-table {
-  flex-grow: 1;
+  flex-direction: column;
   margin: 10px;
 }
+

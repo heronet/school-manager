@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Category } from '../models/Category';
 import { Order } from '../models/Order';
+import { PaginatedResult } from '../models/PaginatedResult';
 import { Product } from '../models/Product';
 
 @Injectable({
@@ -31,8 +32,11 @@ export class StoreService {
   orderProduct(order: Partial<Order>) {
     return this.http.post(`${this.baseUrl}/products/order`, order);
   }
-  getOrders() {
-    return this.http.get<Order[]>(`${this.baseUrl}/products/orders`);
+  deliverOrder(order: Partial<Order>) {
+    return this.http.patch(`${this.baseUrl}/products/orders`, order);
+  }
+  getOrders(pageNumber: number, pageSize: number) {
+    return this.http.get<PaginatedResult<Order>>(`${this.baseUrl}/products/orders?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
 
 }

@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>{{data.productName}}</h1>
+<div mat-dialog-content *ngIf="!isLoading && !deliveryCompleted">
+  <p>How many items do you want to deliver?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Quantity</mat-label>
+    <input matInput [(ngModel)]="quantity" type="number" min="1">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Delivery Man</mat-label>
+    <input matInput [(ngModel)]="deliveryMan" type="text">
+  </mat-form-field>
+</div>
+<div mat-dialog-content *ngIf="isLoading">
+  <mat-spinner style="margin: 0 auto;" [diameter]="40"></mat-spinner>
+  <p style="margin: 10px auto; text-align: center;">Delivering...</p>
+</div>
+<div mat-dialog-content *ngIf="!isLoading && deliveryCompleted">
+  <p style="margin: 10px auto;  color: gray; font-size: 20px;" >Delivery Succesful!</p>
+</div>
+<div mat-dialog-actions *ngIf="!deliveryCompleted">
+  <button mat-stroked-button color="warn" (click)="onNoClick()" [disabled]="isLoading">Cancel</button>
+  <button mat-stroked-button color="primary" (click)="onDeliverClick()" cdkFocusInitial [disabled]="isLoading">Deliver</button>
+</div>
+<div mat-dialog-actions *ngIf="deliveryCompleted">
+  <button mat-stroked-button color="primary" (click)="onNoClick()">Ok</button>
+</div>

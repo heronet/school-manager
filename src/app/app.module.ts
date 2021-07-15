@@ -28,6 +28,7 @@ import { AdminDashboardComponent } from './admin/pages/admin-dashboard/admin-das
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { DeliverDialogComponent } from './core/pages/store/dialogs/deliver-dialog/deliver-dialog.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatSortModule } from '@angular/material/sort';
     OrdersComponent,
     OrderDialogComponent,
     AdminDashboardComponent,
+    DeliverDialogComponent,
   ],
   imports: [
     BrowserModule,
