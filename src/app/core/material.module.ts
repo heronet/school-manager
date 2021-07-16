@@ -13,6 +13,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -29,7 +33,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatMenuModule,
     MatDialogModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatGridListModule,
+    LayoutModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatTabsModule,
@@ -44,8 +52,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatMenuModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    MatGridListModule,
+    LayoutModule,
     MatTableModule,
-    MatProgressSpinnerModule
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class MaterialModule { }
