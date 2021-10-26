@@ -7,9 +7,9 @@ import { StoreComponent } from "./store.component";
 
 const routes: Routes = [
     { 
-        path: '', 
-        component: StoreComponent,
+        path: '',
         children: [
+            { path: '', component: StoreComponent },
             { path: 'add-product', component: AddProductComponent },
             { path: 'orders', component: OrdersComponent },
         ]
