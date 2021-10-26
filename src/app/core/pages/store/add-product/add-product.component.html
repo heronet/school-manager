@@ -9,6 +9,10 @@
       <input type="number" name="price" id="name" ngModel matInput required placeholder="Add the Price">
     </mat-form-field>
     <mat-form-field>
+      <mat-label for="quantity">Available Quantity</mat-label>
+      <input type="number" name="stock" id="stock" ngModel matInput required placeholder="Add the Quantity">
+    </mat-form-field>
+    <mat-form-field>
       <mat-label>Category</mat-label>
       <mat-select ngModel name="category" required>
         <mat-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</mat-option>

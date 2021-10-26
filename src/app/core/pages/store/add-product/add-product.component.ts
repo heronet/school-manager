@@ -39,7 +39,8 @@ export class AddProductComponent implements OnInit {
     const product: Partial<Product> = {
       name: form.value.name.trim(),
       price: form.value.price,
-      category: form.value.category.trim()
+      category: form.value.category.trim(),
+      stock: form.value.stock
     };
    
     this.isSubloading = true;
