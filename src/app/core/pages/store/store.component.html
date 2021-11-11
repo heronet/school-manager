@@ -26,7 +26,7 @@
         </mat-card>
     </div>
     <mat-paginator
-            *ngIf="(products.length > 0) && !isLoading"
+            *ngIf="!isLoading"
             [pageSizeOptions]="[10, 15, 20]" 
             (page)="onPageChange($event)"
             [pageSize]="pageSize"
