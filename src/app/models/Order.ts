@@ -7,6 +7,7 @@ export interface Order {
   availableItemsCount: number;
   totalPrice: number;
   productName: string;
+  roomNumber: number;
   userId: string;
   username: string;
   deliveryMan?: string;

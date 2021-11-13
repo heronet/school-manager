@@ -10,6 +10,7 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class OrderDialogComponent {
   quantity: number = 1;
+  roomNumber: number;
   isLoading = false;
   orderSuccessful = false;
 
@@ -28,7 +29,8 @@ export class OrderDialogComponent {
     this.isLoading = true;
     const order: Partial<Order> = {
       productId: this.data.productId,
-      orderedItemsCount: this.quantity
+      orderedItemsCount: this.quantity,
+      roomNumber: this.roomNumber
     }
     this.storeService.orderProduct(order).subscribe(() => {
       this.isLoading = false;

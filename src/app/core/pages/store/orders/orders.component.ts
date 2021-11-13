@@ -15,6 +15,7 @@ export class OrdersComponent implements OnInit {
   displayedColumns: string[] = [
     'product', 
     'username',
+    'roomNumber',
     'createdAt', 
     'orderQuantity', 
     'availableQuantity', 
